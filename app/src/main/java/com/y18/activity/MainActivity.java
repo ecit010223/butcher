@@ -14,7 +14,12 @@ public class MainActivity extends MVPBaseActivity<MainPresenter> implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.btn_main_1).setOnClickListener(this);
+        initUI();
+    }
+
+    private void initUI(){
+        findViewById(R.id.btn_main_readXLS).setOnClickListener(this);
+        findViewById(R.id.btn_main_custom).setOnClickListener(this);
     }
 
     @Override
@@ -24,7 +29,6 @@ public class MainActivity extends MVPBaseActivity<MainPresenter> implements View
 
     @Override
     public void success(int tag, Object result) {
-
     }
 
     @Override
@@ -35,8 +39,11 @@ public class MainActivity extends MVPBaseActivity<MainPresenter> implements View
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_main_1:
+            case R.id.btn_main_readXLS:
                 POIManager.INSTANCE.readXLS();
+                break;
+            case R.id.btn_main_custom:
+                CustomActivity.entry(this);
                 break;
         }
     }
